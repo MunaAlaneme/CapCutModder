@@ -1,0 +1,234 @@
+{
+    "setting": {
+        "effect_adjust_params": [
+            {
+                "effect_key": "effects_adjust_blur",
+                "default": 0.2,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter",
+                "default": 0.02,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity",
+                "default": 0.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur2",
+                "default": 0.1,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter2",
+                "default": 0.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity2",
+                "default": 0.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur3",
+                "default": 0.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter3",
+                "default": 0.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity3",
+                "default": 1.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur4",
+                "default": 1.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter4",
+                "default": 0.15,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity4",
+                "default": 0.01,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur5",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter5",
+                "default": 0.005,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity5",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur6",
+                "default": 0.15,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter6",
+                "default": 0.01,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity6",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur7",
+                "default": 0.005,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter7",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity7",
+                "default": 0.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur8",
+                "default": 0.1,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter8",
+                "default": 0.0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity8",
+                "default": 0.005,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur9",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter9",
+                "default": 0.001,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity9",
+                "default": 0.01,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur10",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter10",
+                "default": 0.005,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity10",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur11",
+                "default": 0.1,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter11",
+                "default": 0.1,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity11",
+                "default": 0.1,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur12",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter12",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_intensity12",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_blur13",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
+            {
+                "effect_key": "effects_adjust_filter13",
+                "default": 0.02,
+                "min": 0,
+                "max": 1
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+%YAML 1.1
+--- !RenderTexture &1
+name: !<str> RT
+guid: {a: 4345379621665620411, b: 16801948008631995835}
+width: 720
+height: 720
+depth: 1
+internalFormat:
+  __class: InternalFormat
+  value: RGBA8
+dataType:
+  __class: DataType
+  value: U8norm
+builtinType:
+  __class: BuiltInTextureType
+  value: NORAML
+enableMipmap: false
+filterMin:
+  __class: FilterMode
+  value: NEAREST
+filterMag:
+  __class: FilterMode
+  value: NEAREST
+filterMipmap:
+  __class: FilterMipmapMode
+  value: NONE
+wrapModeS:
+  __class: WrapMode
+  value: Mirror
+wrapModeT:
+  __class: WrapMode
+  value: Mirror
+wrapModeR:
+  __class: WrapMode
+  value: Mirror
+maxAnisotropy: 1
+attachment:
+  __class: RenderTextureAttachment
+  value: NONE
+massMode:
+  __class: MSAAMode
+  value: _4X
+shared: false
+needInitData: false
+colorFormat:
+  __class: PixelFormat
+  value: RGBA8Unorm

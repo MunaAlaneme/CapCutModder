@@ -1,0 +1,62 @@
+{
+	"setting" : 
+	{
+		"effect_adjust_params" : 
+		[
+			{
+				"default" : 0.6,
+				"effect_key" : "effects_adjust_speed",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.6,
+				"effect_key" : "effects_adjust_intensity",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.3333,
+				"effect_key" : "effects_adjust_size",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.6,
+				"effect_key" : "effects_adjust_speed2",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.6,
+				"effect_key" : "effects_adjust_intensity2",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.3333,
+				"effect_key" : "effects_adjust_size2",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.0,
+				"effect_key" : "effects_adjust_speed3",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.2,
+				"effect_key" : "effects_adjust_intensity3",
+				"max" : 1.0,
+				"min" : 0.0
+			},
+			{
+				"default" : 0.2,
+				"effect_key" : "effects_adjust_size3",
+				"max" : 1.0,
+				"min" : 0.0
+			}
+		]
+	}
+}

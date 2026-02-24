@@ -1,0 +1,13 @@
+{
+    "effect": {
+        "Link": [
+            {
+                "path": "gaussBlur/",
+                "type": "AmazingFeature",
+                "zorder": 10000
+            }
+        ]
+    },
+    "name": "2021_03_16_16_32_48_86cd554efe4011ea978facde48001122",
+    "version": "6.6.0"
+}

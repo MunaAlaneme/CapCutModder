@@ -1,0 +1,1 @@
+const MathUtils={lerp:(a,b,t)=>a+(b-a)*t,degToRad:degrees=>degrees*Math.PI/180,radToDeg:radians=>radians*180/Math.PI,randFloat:(min,max)=>Math.random()*(max-min)+min,clamp:(value,min,max)=>Math.min(Math.max(value,min),max),euclideanModulo:(n,m)=>(n%m+m)%m};exports.MathUtils=MathUtils;

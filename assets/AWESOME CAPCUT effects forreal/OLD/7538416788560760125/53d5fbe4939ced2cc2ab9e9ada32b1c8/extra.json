@@ -1,0 +1,42 @@
+{
+    "setting": {
+        "effect_adjust_params": [
+            {
+                "effect_key": "effects_adjust_speed",
+                "default": 0.07333333333333,
+                "min": -2.0,
+                "max": 2.0
+            },
+            {
+                "effect_key": "effects_adjust_speed2",
+                "default": 0.07333333333333,
+                "min": -2.0,
+                "max": 2.0
+            },
+            {
+                "effect_key": "effects_adjust_speed3",
+                "default": 0.07333333333333,
+                "min": -2.0,
+                "max": 2.0
+            },
+            {
+                "effect_key": "effects_adjust_speed4",
+                "default": 0.07333333333333,
+                "min": -2.0,
+                "max": 2.0
+            },
+            {
+                "effect_key": "effects_adjust_speed5",
+                "default": 0.07333333333333,
+                "min": -2.0,
+                "max": 2.0
+            },
+            {
+                "effect_key": "effects_adjust_speed6",
+                "default": 0.07333333333333,
+                "min": -2.0,
+                "max": 2.0
+            }
+        ]
+    }
+}

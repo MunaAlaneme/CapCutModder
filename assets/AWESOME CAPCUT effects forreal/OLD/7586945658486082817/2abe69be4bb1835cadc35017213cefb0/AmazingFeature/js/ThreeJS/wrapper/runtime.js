@@ -1,0 +1,1 @@
+let currentScene=null;function getCurrentScene(){if(!currentScene){console.warn("Scene实例尚未创建")}return currentScene}function setCurrentScene(scene){currentScene=scene}function clearCurrentScene(){currentScene=null}exports.getCurrentScene=getCurrentScene;exports.setCurrentScene=setCurrentScene;exports.clearCurrentScene=clearCurrentScene;

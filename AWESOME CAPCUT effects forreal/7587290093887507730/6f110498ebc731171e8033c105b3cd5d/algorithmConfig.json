@@ -1,0 +1,53 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"53384076b299asdfaa5ef02f744f36cc",
+	"nodes":	[{
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_max_num":	5,
+						"face_detect_mode":	131072,
+						"face_detect_ability":	3841,
+						"face_detect_interval":	24,
+						"face_force_detect":	1
+					},
+					"floatParam":	{
+						"face_base_smooth_level":	1
+					},
+					"stringParam":	{
+						"face_base_model_key":	"tt_fsnew_base_jianying"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}]
+}

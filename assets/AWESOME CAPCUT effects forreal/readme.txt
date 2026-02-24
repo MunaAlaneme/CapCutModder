@@ -1,0 +1,1 @@
+put it in ..../Movies/CapCut/User Data/Cache/effect/

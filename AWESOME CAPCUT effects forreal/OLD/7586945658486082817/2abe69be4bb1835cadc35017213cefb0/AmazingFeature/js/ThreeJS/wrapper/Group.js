@@ -1,0 +1,1 @@
+const{Object3D}=require("./Object3D");class Group extends Object3D{constructor(name="Group_w"){super(name)}dispose(){super.dispose()}}exports.Group=Group;
