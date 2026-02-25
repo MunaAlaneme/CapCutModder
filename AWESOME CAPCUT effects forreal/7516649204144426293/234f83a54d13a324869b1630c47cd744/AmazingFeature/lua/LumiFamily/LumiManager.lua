@@ -216,7 +216,7 @@ function LumiManager:onUpdate(comp, deltaTime)
         ['LumiOpticsCompensation_306-effect0'] = {
             ['fov'] = value1,
             ['inverseLensDistortion'] = value2a,
-            ['googoosy'] = false,
+            ['googoosy'] = value6,
             ['fovOrientation'] = 20,
             ['center'] = Amaz.Vector2f(value3, value4),
             ['antiAliasing'] = false,
