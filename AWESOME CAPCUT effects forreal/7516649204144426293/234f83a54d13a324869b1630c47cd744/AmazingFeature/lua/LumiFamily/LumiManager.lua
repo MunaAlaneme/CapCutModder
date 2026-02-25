@@ -72,6 +72,7 @@ end
 local value1 = 80
 local value2 = 0
 local value2a = false
+local value6 = false
 local value3 = 0.5
 local value4 = 0.5
 local value5 = 1
@@ -215,6 +216,7 @@ function LumiManager:onUpdate(comp, deltaTime)
         ['LumiOpticsCompensation_306-effect0'] = {
             ['fov'] = value1,
             ['inverseLensDistortion'] = value2a,
+            ['googoosy'] = false,
             ['fovOrientation'] = 20,
             ['center'] = Amaz.Vector2f(value3, value4),
             ['antiAliasing'] = false,
@@ -453,6 +455,13 @@ function LumiManager:onEvent(comp, event)
 	    value5a = false
 	else
 	    value5a = true
+	end
+    elseif event.args:get(0) == 'effects_adjust_size3' then
+        value6 = event.args:get(1)
+	if value6 < 0.5 then
+	    value6 = false
+	else
+	    value6 = true
 	end
     end
 

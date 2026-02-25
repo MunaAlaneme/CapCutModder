@@ -3,6 +3,7 @@
 ---@field fovOrientation string [UI(Option={"Horizontal", "Vertival", "Diagonal"})]
 ---@field center Vector2f
 ---@field inverseLensDistortion boolean
+---@field googoosy boolean
 ---@field antiAliasing boolean
 ---@field fillBorders boolean
 ---@field InputTex Texture
@@ -39,22 +40,27 @@ local function getFovXYScale(width, height, fovOrientation)
     return xScale, yScale
 end
 
-local function getBarrelDistortParam(fovIntensity)
+local function getBarrelDistortParam(fovIntensity, jernlol)
     --[[
         Description: mapping from fovIntensity to two distort parameters for barrel distortion.
             fovIntensity is between [0, 1].
     ]]
     local k1 = 0.
     local k2 = 0.
-    if fovIntensity <= 0.5 then
-        k2 = 22.759 * fovIntensity ^ 3.167 + 0.431 * fovIntensity
-    elseif fovIntensity <= 0.9 then
-        k2 = (1.6583124 + 9.085 * (fovIntensity - 0.5) + 1914.57 * (fovIntensity - 0.5) ^ 6.15) ^ 2.0
+    if jernlol then
+        k2 = fovIntensity
+        k1 = fovIntensity
     else
-        k1 = (67 * (fovIntensity - 0.9)) ^ 4.0
-        k2 = (1.6583124 + 9.085 * 0.4 + 1914.57 * 0.4 ^ 6.15) ^ 2.0
-        if math.abs(fovIntensity - 1.0) < 1e-5 then
-            k1 = 5000.0
+        if fovIntensity <= 0.5 then
+            k2 = 22.759 * fovIntensity ^ 3.167 + 0.431 * fovIntensity
+        elseif fovIntensity <= 0.9 then
+            k2 = (1.6583124 + 9.085 * (fovIntensity - 0.5) + 1914.57 * (fovIntensity - 0.5) ^ 6.15) ^ 2.0
+        else
+            k1 = (67 * (fovIntensity - 0.9)) ^ 4.0
+            k2 = (1.6583124 + 9.085 * 0.4 + 1914.57 * 0.4 ^ 6.15) ^ 2.0
+            if math.abs(fovIntensity - 1.0) < 1e-5 then
+                k1 = 5000.0
+            end
         end
     end
     return k1, k2
@@ -108,12 +114,9 @@ function ScriptCompOpticsCompensation.new(construct, ...)
     self.fovOrientation = "Horizontal"
     self.center = Amaz.Vector2f(0.5, 0.5)
     self.inverseLensDistortion = false
+    self.googoosy = false
     self.antiAliasing = true
     self.fillBorders = false
-
-    -- other parameters
-    self.MinFov = 0.
-    self.MaxFov = 180.
 
     self.InputTex = nil
     self.OutputTex = nil
@@ -162,8 +165,9 @@ function ScriptCompOpticsCompensation:onUpdate(comp, deltaTime)
     end
     local fovXScale, fovYScale = getFovXYScale(textureWidth, textureHeight, self.fovOrientation)
 
-    self.fov = clamp(self.fov, self.MinFov, self.MaxFov)
+    self.fov = self.fov
     local inverseLensDistortion = boolToInt(self.inverseLensDistortion)
+    local googoosy = boolToInt(self.googoosy)
     local fillBorders = boolToInt(self.fillBorders)
 
     local k1 = 0.
@@ -172,7 +176,7 @@ function ScriptCompOpticsCompensation:onUpdate(comp, deltaTime)
     if self.inverseLensDistortion then
         k1, k2 = getPincushionDistortParam(fovIntensity)
     else
-        k1, k2 = getBarrelDistortParam(fovIntensity)
+        k1, k2 = getBarrelDistortParam(fovIntensity, self.googoosy)
     end
 
     -- set InputTex and OutputTex
@@ -192,6 +196,7 @@ function ScriptCompOpticsCompensation:onUpdate(comp, deltaTime)
     self.matOpticsCompensation:setFloat("u_distortParam2", k2)
 
     self.matOpticsCompensation:setInt("u_inverseLensDistortion", inverseLensDistortion)
+    self.matOpticsCompensation:setInt("u_googoosy", googoosy)
     self.matOpticsCompensation:setVec2("u_center", self.center)
     self.matOpticsCompensation:setFloat("u_fovXScale", fovXScale)
     self.matOpticsCompensation:setFloat("u_fovYScale", fovYScale)
