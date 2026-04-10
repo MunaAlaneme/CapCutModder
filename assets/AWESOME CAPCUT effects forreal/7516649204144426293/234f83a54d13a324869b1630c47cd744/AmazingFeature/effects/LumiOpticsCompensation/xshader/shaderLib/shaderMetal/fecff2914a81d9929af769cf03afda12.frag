@@ -11,6 +11,7 @@ struct buffer_t
     float u_fovXScale;
     float u_fovYScale;
     int u_inverseLensDistortion;
+    int u_googoosy;
     float u_distortParam1;
     float u_distortParam2;
     int u_fillBorders;
@@ -42,11 +43,19 @@ fragment main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer, te
     float _58 = (_43 * _43) + (_50 * _50);
     float _61 = sqrt(_58);
     float _t5 = 1.0;
-    if (buffer.u_inverseLensDistortion == 0)
+    if (buffer.u_inverseLensDistortion == 0 and buffer.u_googoosy == 1)
+    {
+        _t5 = 1.0 / ((1.0 - (buffer.u_distortParam1 * _61)) - (buffer.u_distortParam2));
+    }
+    else if (buffer.u_inverseLensDistortion == 1 and buffer.u_googoosy == 1)
+    {
+        _t5 = 1.0 / ((1.0 + (buffer.u_distortParam1 * _61)) + (buffer.u_distortParam2));
+    }
+    else if (buffer.u_inverseLensDistortion == 0 and buffer.u_googoosy == 0)
     {
         _t5 = 1.0 / ((1.0 - (buffer.u_distortParam1 * _61)) - (buffer.u_distortParam2 * _58));
     }
-    else
+    else if (buffer.u_inverseLensDistortion == 1 and buffer.u_googoosy == 0)
     {
         _t5 = 1.0 / ((1.0 + (buffer.u_distortParam1 * _61)) + (buffer.u_distortParam2 * _58));
     }

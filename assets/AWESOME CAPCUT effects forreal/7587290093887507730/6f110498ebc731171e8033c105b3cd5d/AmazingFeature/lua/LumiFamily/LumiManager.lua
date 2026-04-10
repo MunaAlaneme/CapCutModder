@@ -47,6 +47,7 @@ local value35 = 0;
 local value36 = 0;
 local value37 = 0;
 local value38 = 2;
+local value39 = 0;
 
 data.ae_durations = {
     ['LumiCCLens_76-effect0'] = {
@@ -343,6 +344,7 @@ function LumiManager:onUpdate(comp, deltaTime)
             ['bPhase'] = value36,
             ['rgbRnd'] = value37,
             ['rgbFrq'] = value38,
+            ['random'] = value39,
             ['AEDesignSize'] = Amaz.Vector2f(512, 512),
         },
         ['LumiLayer_76-blend'] = {
@@ -774,6 +776,15 @@ function LumiManager:onEvent(comp, event)
     end
     if event.args:get(0) == 'effects_adjust_filter13' then
         value38 = event.args:get(1)*100.0
+    end
+    if event.args:get(0) == 'effects_adjust_intensity13' then
+        value39 = 0
+        if event.args:get(1) >= 0.5 then
+            value39 = 1
+        end
+        if event.args:get(1) >= 1.0 then
+            value39 = 2
+        end
     end
     if self.lumi_params_setter and self.lumi_params_setter.onEvent then
         self.lumi_params_setter:onEvent(self.lumi_obj, event)

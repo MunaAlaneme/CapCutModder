@@ -228,7 +228,13 @@
                 "default": 0.02,
                 "min": 0,
                 "max": 1
-            }
+            },
+            {
+                "effect_key": "effects_adjust_intensity13",
+                "default": 0,
+                "min": 0,
+                "max": 1
+            },
         ]
     }
 }

@@ -11,6 +11,7 @@ LumiSShake.__index = LumiSShake
 ---@field blurIntensity double [UI(Display="MotionBlur Intensity", Range={0, 5}, Drag)]
 ---@field blurQuality double [UI(Display="MotionBlur Quality", Range={0, 1}, Drag)]
 ---@field seed double [UI(Display="Random Seed")]
+---@field random double [UI(Display="Randomness")]
 ---@field xFill string [UI(Option={"None", "Repeat", "Mirror"})]
 ---@field yFill string [UI(Option={"None", "Repeat", "Mirror"})]
 ---@field xAmpR double [UI(Display="X Amplitude Random", Range={0, 1500}, Drag)]
@@ -115,6 +116,7 @@ function LumiSShake.new(construct, ...)
     self.bPhase = 0
     self.rgbRnd = 0
     self.rgbFrq = 2
+    self.random = 0
 
     self.curTime = 0
     self.FILL_QUERY = {[0]="None", "Repeat", "Mirror",
@@ -222,21 +224,21 @@ function LumiSShake:apply (iw, ih, ow, oh, t)
     local dWG = self.mainWave(ampG * self.wAmp, frq0 * self.wFrq, phaseG + self.wPhase, t)
     local dWB = self.mainWave(ampB * self.wAmp, frq0 * self.wFrq, phaseB + self.wPhase, t)
 
-    dXR = dXR + self.randWaveX(ampR * self.xAmpR, frq0 * self.xFrqR, phaseR + self.xPhase, t, self.seed)
-    dXG = dXG + self.randWaveX(ampG * self.xAmpR, frq0 * self.xFrqR, phaseG + self.xPhase, t, self.seed)
-    dXB = dXB + self.randWaveX(ampB * self.xAmpR, frq0 * self.xFrqR, phaseB + self.xPhase, t, self.seed)
+    dXR = dXR + self.randWaveX(ampR * self.xAmpR, frq0 * self.xFrqR, phaseR + self.xPhase, t, self.seed, self.random)
+    dXG = dXG + self.randWaveX(ampG * self.xAmpR, frq0 * self.xFrqR, phaseG + self.xPhase, t, self.seed, self.random)
+    dXB = dXB + self.randWaveX(ampB * self.xAmpR, frq0 * self.xFrqR, phaseB + self.xPhase, t, self.seed, self.random)
 
-    dYR = dYR + self.randWaveY(ampR * self.yAmpR, frq0 * self.yFrqR, phaseR + self.yPhase, t, self.seed)
-    dYG = dYG + self.randWaveY(ampG * self.yAmpR, frq0 * self.yFrqR, phaseG + self.yPhase, t, self.seed)
-    dYB = dYB + self.randWaveY(ampB * self.yAmpR, frq0 * self.yFrqR, phaseB + self.yPhase, t, self.seed)
+    dYR = dYR + self.randWaveY(ampR * self.yAmpR, frq0 * self.yFrqR, phaseR + self.yPhase, t, self.seed, self.random)
+    dYG = dYG + self.randWaveY(ampG * self.yAmpR, frq0 * self.yFrqR, phaseG + self.yPhase, t, self.seed, self.random)
+    dYB = dYB + self.randWaveY(ampB * self.yAmpR, frq0 * self.yFrqR, phaseB + self.yPhase, t, self.seed, self.random)
 
-    dZR = dZR + self.randWaveZ(ampR * self.zAmpR, frq0 * self.zFrqR, phaseR + self.zPhase, t, self.seed)
-    dZG = dZG + self.randWaveZ(ampG * self.zAmpR, frq0 * self.zFrqR, phaseG + self.zPhase, t, self.seed)
-    dZB = dZB + self.randWaveZ(ampB * self.zAmpR, frq0 * self.zFrqR, phaseB + self.zPhase, t, self.seed)
+    dZR = dZR + self.randWaveZ(ampR * self.zAmpR, frq0 * self.zFrqR, phaseR + self.zPhase, t, self.seed, self.random)
+    dZG = dZG + self.randWaveZ(ampG * self.zAmpR, frq0 * self.zFrqR, phaseG + self.zPhase, t, self.seed, self.random)
+    dZB = dZB + self.randWaveZ(ampB * self.zAmpR, frq0 * self.zFrqR, phaseB + self.zPhase, t, self.seed, self.random)
 
-    dWR = dWR + self.randWaveW(ampR * self.wAmpR, frq0 * self.wFrqR, phaseR + self.wPhase, t, self.seed)
-    dWG = dWG + self.randWaveW(ampG * self.wAmpR, frq0 * self.wFrqR, phaseG + self.wPhase, t, self.seed)
-    dWB = dWB + self.randWaveW(ampB * self.wAmpR, frq0 * self.wFrqR, phaseB + self.wPhase, t, self.seed)
+    dWR = dWR + self.randWaveW(ampR * self.wAmpR, frq0 * self.wFrqR, phaseR + self.wPhase, t, self.seed, self.random)
+    dWG = dWG + self.randWaveW(ampG * self.wAmpR, frq0 * self.wFrqR, phaseG + self.wPhase, t, self.seed, self.random)
+    dWB = dWB + self.randWaveW(ampB * self.wAmpR, frq0 * self.wFrqR, phaseB + self.wPhase, t, self.seed, self.random)
 
     local screenSize = Amaz.Vector2f(ow, oh)
     local ohw = ow * 0.5
@@ -275,10 +277,10 @@ function LumiSShake:applyBlur (iw, ih, ow, oh, t)
         local dYR = self.mainWave(ampR * self.yAmp, frq0 * self.yFrq, phaseR + self.yPhase, tt)
         local dZR = self.mainWave(ampR * self.zAmp, frq0 * self.zFrq, phaseR + self.zPhase, tt)
         local dWR = self.mainWave(ampR * self.wAmp, frq0 * self.wFrq, phaseR + self.wPhase, tt)
-        dXR = dXR + self.randWaveX(ampR * self.xAmpR, frq0 * self.xFrqR, phaseR + self.xPhase, tt, self.seed)
-        dYR = dYR + self.randWaveY(ampR * self.yAmpR, frq0 * self.yFrqR, phaseR + self.yPhase, tt, self.seed)
-        dZR = dZR + self.randWaveZ(ampR * self.zAmpR, frq0 * self.zFrqR, phaseR + self.zPhase, tt, self.seed)
-        dWR = dWR + self.randWaveW(ampR * self.wAmpR, frq0 * self.wFrqR, phaseR + self.wPhase, tt, self.seed)
+        dXR = dXR + self.randWaveX(ampR * self.xAmpR, frq0 * self.xFrqR, phaseR + self.xPhase, tt, self.seed, self.random)
+        dYR = dYR + self.randWaveY(ampR * self.yAmpR, frq0 * self.yFrqR, phaseR + self.yPhase, tt, self.seed, self.random)
+        dZR = dZR + self.randWaveZ(ampR * self.zAmpR, frq0 * self.zFrqR, phaseR + self.zPhase, tt, self.seed, self.random)
+        dWR = dWR + self.randWaveW(ampR * self.wAmpR, frq0 * self.wFrqR, phaseR + self.wPhase, tt, self.seed, self.random)
         local scaleR = self.DESIGN_SIZE / math.max(self.scale0 * self.DESIGN_SIZE + dZR, self.DESIGN_SIZE * 0.1)
         return self.matrix(nil, {{w = iw, h = ih, ax = 0.5, ay = 0.5, x = ohw - dXR, y = ohh - dYR, s = scaleR, r = -dWR}})
     end)
@@ -288,10 +290,10 @@ function LumiSShake:applyBlur (iw, ih, ow, oh, t)
         local dYG = self.mainWave(ampG * self.yAmp, frq0 * self.yFrq, phaseG + self.yPhase, tt)
         local dZG = self.mainWave(ampG * self.zAmp, frq0 * self.zFrq, phaseG + self.zPhase, tt)
         local dWG = self.mainWave(ampG * self.wAmp, frq0 * self.wFrq, phaseG + self.wPhase, tt)
-        dXG = dXG + self.randWaveX(ampG * self.xAmpR, frq0 * self.xFrqR, phaseG + self.xPhase, tt, self.seed)
-        dYG = dYG + self.randWaveY(ampG * self.yAmpR, frq0 * self.yFrqR, phaseG + self.yPhase, tt, self.seed)
-        dZG = dZG + self.randWaveZ(ampG * self.zAmpR, frq0 * self.zFrqR, phaseG + self.zPhase, tt, self.seed)
-        dWG = dWG + self.randWaveW(ampG * self.wAmpR, frq0 * self.wFrqR, phaseG + self.wPhase, tt, self.seed)
+        dXG = dXG + self.randWaveX(ampG * self.xAmpR, frq0 * self.xFrqR, phaseG + self.xPhase, tt, self.seed, self.random)
+        dYG = dYG + self.randWaveY(ampG * self.yAmpR, frq0 * self.yFrqR, phaseG + self.yPhase, tt, self.seed, self.random)
+        dZG = dZG + self.randWaveZ(ampG * self.zAmpR, frq0 * self.zFrqR, phaseG + self.zPhase, tt, self.seed, self.random)
+        dWG = dWG + self.randWaveW(ampG * self.wAmpR, frq0 * self.wFrqR, phaseG + self.wPhase, tt, self.seed, self.random)
         local scaleG = self.DESIGN_SIZE / math.max(self.scale0 * self.DESIGN_SIZE + dZG, self.DESIGN_SIZE * 0.1)
         return self.matrix(nil, {{w = iw, h = ih, ax = 0.5, ay = 0.5, x = ohw - dXG, y = ohh - dYG, s = scaleG, r = -dWG}})
     end)
@@ -301,10 +303,10 @@ function LumiSShake:applyBlur (iw, ih, ow, oh, t)
         local dYB = self.mainWave(ampB * self.yAmp, frq0 * self.yFrq, phaseB + self.yPhase, tt)
         local dZB = self.mainWave(ampB * self.zAmp, frq0 * self.zFrq, phaseB + self.zPhase, tt)
         local dWB = self.mainWave(ampB * self.wAmp, frq0 * self.wFrq, phaseB + self.wPhase, tt)
-        dXB = dXB + self.randWaveX(ampB * self.xAmpR, frq0 * self.xFrqR, phaseB + self.xPhase, tt, self.seed)
-        dYB = dYB + self.randWaveY(ampB * self.yAmpR, frq0 * self.yFrqR, phaseB + self.yPhase, tt, self.seed)
-        dZB = dZB + self.randWaveZ(ampB * self.zAmpR, frq0 * self.zFrqR, phaseB + self.zPhase, tt, self.seed)
-        dWB = dWB + self.randWaveW(ampB * self.wAmpR, frq0 * self.wFrqR, phaseB + self.wPhase, tt, self.seed)
+        dXB = dXB + self.randWaveX(ampB * self.xAmpR, frq0 * self.xFrqR, phaseB + self.xPhase, tt, self.seed, self.random)
+        dYB = dYB + self.randWaveY(ampB * self.yAmpR, frq0 * self.yFrqR, phaseB + self.yPhase, tt, self.seed, self.random)
+        dZB = dZB + self.randWaveZ(ampB * self.zAmpR, frq0 * self.zFrqR, phaseB + self.zPhase, tt, self.seed, self.random)
+        dWB = dWB + self.randWaveW(ampB * self.wAmpR, frq0 * self.wFrqR, phaseB + self.wPhase, tt, self.seed, self.random)
         local scaleB = self.DESIGN_SIZE / math.max(self.scale0 * self.DESIGN_SIZE + dZB, self.DESIGN_SIZE * 0.1)
         return self.matrix(nil, {{w = iw, h = ih, ax = 0.5, ay = 0.5, x = ohw - dXB, y = ohh - dYB, s = scaleB, r = -dWB}})
     end)
@@ -317,36 +319,257 @@ function LumiSShake.mainWave (amp, frq, phase, t)
 end
 
 --TODO
-function LumiSShake.randWaveX (amp, frq, phase, t, seed)
+local function fract(x)
+    return x - math.floor(x)
+end
+
+local function lerp(a, b, t)
+    return a + (b - a) * t
+end
+
+-- smoother interpolation (Perlin fade)
+local function smooth(t)
+    return t * t * t * (t * (t * 6 - 15) + 10)
+end
+
+-- deterministic hash with seed
+local function hash(x, seed)
+    return fract(math.sin(x * 127.1 + seed * 311.7) * 43758.5453123)
+end
+
+-- base smooth noise
+local function noise1D(x, seed)
+    local i = math.floor(x)
+    local f = x - i
+
+    local a = hash(i, seed)
+    local b = hash(i+1, seed)
+
+    return lerp(a, b, smooth(f))
+end
+
+local function fractalNoise1D(x, seed, octaves)
+    local value = 0
+    local amp = 1
+    local freq = 1
+    local max = 0
+
+    for i=1,octaves do
+        value = value + noise1D(x*freq, seed+i*17)*amp
+        max = max + amp
+        amp = amp*0.5
+        freq = freq*2
+    end
+
+    return value/max
+end
+
+
+
+-- ------------------------------------------------------------
+-- 2D Simplex Noise (Lua Port)
+-- ------------------------------------------------------------
+
+local function floor(x)
+    return math.floor(x)
+end
+
+local function frac(x)
+    return x - floor(x)
+end
+
+local function dot2(a, b)
+    return a[1]*b[1] + a[2]*b[2]
+end
+
+local function dot3(a, b)
+    return a[1]*b[1] + a[2]*b[2] + a[3]*b[3]
+end
+
+local function mod289_2(x)
+    return {
+        x[1] - floor(x[1] / 289.0) * 289.0,
+        x[2] - floor(x[2] / 289.0) * 289.0
+    }
+end
+
+local function mod289_3(x)
+    return {
+        x[1] - floor(x[1] / 289.0) * 289.0,
+        x[2] - floor(x[2] / 289.0) * 289.0,
+        x[3] - floor(x[3] / 289.0) * 289.0
+    }
+end
+
+local function permute(x)
+    return mod289_3({
+        (x[1] * 34.0 + 1.0) * x[1],
+        (x[2] * 34.0 + 1.0) * x[2],
+        (x[3] * 34.0 + 1.0) * x[3]
+    })
+end
+
+function snoise2(vx, vy)
+
+    local C = {
+        0.211324865405187,
+        0.366025403784439,
+       -0.577350269189626,
+        0.024390243902439
+    }
+
+    -- First corner
+    local dotv = (vx + vy) * C[2]
+    local i = {
+        floor(vx + dotv),
+        floor(vy + dotv)
+    }
+
+    local doti = (i[1] + i[2]) * C[1]
+    local x0 = {
+        vx - i[1] + doti,
+        vy - i[2] + doti
+    }
+
+    -- Other corners
+    local i1
+    if x0[1] > x0[2] then
+        i1 = {1.0, 0.0}
+    else
+        i1 = {0.0, 1.0}
+    end
+
+    local x12 = {
+        x0[1] - i1[1] + C[1],
+        x0[2] - i1[2] + C[1],
+        x0[1] + C[3],
+        x0[2] + C[3]
+    }
+
+    -- Permutations
+    i = mod289_2(i)
+
+    local p = permute(
+        permute({
+            i[2] + 0.0,
+            i[2] + i1[2],
+            i[2] + 1.0
+        })
+    )
+
+    p = permute({
+        p[1] + i[1] + 0.0,
+        p[2] + i[1] + i1[1],
+        p[3] + i[1] + 1.0
+    })
+
+    -- Gradients
+    local m = {
+        math.max(0.5 - dot2(x0, x0), 0.0),
+        math.max(0.5 - (x12[1]*x12[1] + x12[2]*x12[2]), 0.0),
+        math.max(0.5 - (x12[3]*x12[3] + x12[4]*x12[4]), 0.0)
+    }
+
+    for k=1,3 do
+        m[k] = m[k] * m[k]
+        m[k] = m[k] * m[k]
+    end
+
+    local x = {
+        2.0 * frac(p[1] * C[4]) - 1.0,
+        2.0 * frac(p[2] * C[4]) - 1.0,
+        2.0 * frac(p[3] * C[4]) - 1.0
+    }
+
+    local h = {
+        math.abs(x[1]) - 0.5,
+        math.abs(x[2]) - 0.5,
+        math.abs(x[3]) - 0.5
+    }
+
+    local ox = {
+        floor(x[1] + 0.5),
+        floor(x[2] + 0.5),
+        floor(x[3] + 0.5)
+    }
+
+    local a0 = {
+        x[1] - ox[1],
+        x[2] - ox[2],
+        x[3] - ox[3]
+    }
+
+    for k=1,3 do
+        m[k] = m[k] * (1.79284291400159 - 0.85373472095314 * (a0[k]*a0[k] + h[k]*h[k]))
+    end
+
+    local g = {
+        a0[1]*x0[1] + h[1]*x0[2],
+        a0[2]*x12[1] + h[2]*x12[2],
+        a0[3]*x12[3] + h[3]*x12[4]
+    }
+
+    return 130.0 * dot3(m, g)
+end
+
+
+
+
+
+function LumiSShake.randWaveX (amp, frq, phase, t, seed, random)
     local x = math.pi * t * frq
     local y = 0
-    y = y + math.cos(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50 * 0.5
-    y = y + math.sin(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32 * 0.5
-    y = y + math.cos(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18 * 0.5
+    if random == 1 then
+        y = y + snoise2(phase+x, seed * 49235.3198)
+    elseif random == 2 then
+        y = y + (fractalNoise1D(x+phase, seed, 4)*2 - 1)
+    else
+        y = y + math.cos(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50 * 0.5
+        y = y + math.sin(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32 * 0.5
+        y = y + math.cos(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18 * 0.5
+    end
     return y * amp
 end
-function LumiSShake.randWaveY (amp, frq, phase, t, seed)
+function LumiSShake.randWaveY (amp, frq, phase, t, seed, random)
     local x = math.pi * t * frq
     local y = 0
-    y = y + math.sin(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50 * 0.5
-    y = y + math.cos(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32 * 0.5
-    y = y + math.sin(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18 * 0.5
+    if random == 1 then
+        y = y + snoise2(phase+x+7468.329, seed * 19337.9404)
+    elseif random == 2 then
+        y = y + (fractalNoise1D(x+phase, seed+100, 4)*2 - 1)
+    else
+        y = y + math.sin(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50 * 0.5
+        y = y + math.cos(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32 * 0.5
+        y = y + math.sin(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18 * 0.5
+    end
     return y * amp
 end
-function LumiSShake.randWaveZ (amp, frq, phase, t, seed)
+function LumiSShake.randWaveZ (amp, frq, phase, t, seed, random)
     local x = math.pi * t * frq
     local y = 0
-    y = y + math.sin(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50
-    y = y + math.sin(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32
-    y = y + math.cos(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18
+    if random == 1 then
+        y = y + snoise2(phase+x+14936.658, seed * 59235.3198)
+    elseif random == 2 then
+        y = y + (fractalNoise1D(x+phase, seed+200, 3)*2 - 1)
+    else
+        y = y + math.sin(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50
+        y = y + math.sin(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32
+        y = y + math.cos(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18
+    end
     return y * amp
 end
-function LumiSShake.randWaveW (amp, frq, phase, t, seed)
+function LumiSShake.randWaveW (amp, frq, phase, t, seed, random)
     local x = math.pi * t * frq
     local y = 0
-    y = y + math.sin(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50
-    y = y + math.cos(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32
-    y = y + math.cos(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18
+    if random == 1 then
+        y = y + snoise2(phase+x+22404.987, seed * 18337.9404)
+    elseif random == 2 then
+        y = y + (fractalNoise1D(x+phase, seed+300, 3)*2 - 1)
+    else
+        y = y + math.sin(x * (2 + seed % 0.33) * 0.5 + phase + seed % 1.13) * 0.50
+        y = y + math.cos(x * (3 + seed % 0.73) * 0.5 + phase + seed % 0.69) * 0.32
+        y = y + math.cos(x * (5 + seed % 1.37) * 0.5 + phase + seed % 0.33) * 0.18
+    end
     return y * amp
 end
 

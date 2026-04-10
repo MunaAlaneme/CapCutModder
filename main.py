@@ -71,24 +71,8 @@ def constrain(val, min_val, max_val):
 def get_username():
     return pwd.getpwuid(os.getuid())[0]
 print(get_username())
-
-effectIDs = [
-    7399472023874931973,
-    7538416788560760125,
-    7399467918615973125,
-    7585507865532599570,
-    7584604470445706549,
-    7586945658486082817,
-    7516649204144426293,
-    7525161059229961525,
-    7399467020506483973,
-    7399470493742451973,
-    7497908199245368629,
-    7587290093887507730,
-    7589504110471171335,
-    7599898793059912967,
-    7497204107288022325
-]
+lines = Path("effect.txt").read_text().splitlines()
+effectIDs = lines
 def modCapCut():
     CopyEffects(effectIDs)
 moddedTime = 0
