@@ -1,0 +1,24 @@
+{
+	"ImageBusinessSlider" : 
+	{
+		"LV" : 
+		{
+			"color" : 
+			{
+				"materialValue" : 
+				{
+					"4557989936869184350,230287562842456454" : 
+					{
+						"u_colorChange" : 
+						{
+							"entityName" : "Pass7",
+							"maxValue" : 1.0,
+							"minValue" : 0.0
+						}
+					}
+				},
+				"sliderIntensity" : 0.0
+			}
+		}
+	}
+}

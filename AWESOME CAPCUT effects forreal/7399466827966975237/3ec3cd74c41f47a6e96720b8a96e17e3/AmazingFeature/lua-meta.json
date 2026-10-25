@@ -1,0 +1,206 @@
+[
+    {
+        "ClassName": "SeekModeScript",
+        "Super": "ScriptComponent",
+        "FilePath": "prefabs/tuoying_AmazingFeature/lua/SeekModeScript.lua",
+        "FileAbsPath": "/Users/yyb/Downloads/\u8d1f\u7247\u62d6\u5f71 2/AmazingFeature/prefabs/tuoying_AmazingFeature/lua/SeekModeScript.lua",
+        "Properties": [
+            {
+                "VarName": "curTime",
+                "VarType": "Double",
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Range",
+                                "RawValue": "",
+                                "Values": [
+                                    0.0,
+                                    300.0
+                                ]
+                            },
+                            {
+                                "AttrType": "Slider",
+                                "RawValue": "",
+                                "Values": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "VarName": "duration",
+                "VarType": "Double",
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Input",
+                                "RawValue": "",
+                                "Values": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "VarName": "zoom_factor",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "blurRadius",
+                "VarType": "Vector4f",
+                "Comment": ""
+            },
+            {
+                "VarName": "direction",
+                "VarType": "Vector2f",
+                "Comment": ""
+            },
+            {
+                "VarName": "weight",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "filter",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "alpha",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "alpha1",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "alpha2",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "lightnessMin",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "lightnessRange",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "lightness",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "contrast",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "updateTime",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "colorSpeed",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "colorDiv",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "changeSrcColorTime",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "changeSrcColorWaitTime",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "changeSrcColorMax",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "isAutoPlay",
+                "VarType": "Bool",
+                "Comment": ""
+            }
+        ],
+        "Methods": [
+            {
+                "FuncName": "ButtonClip",
+                "Params": [],
+                "Comment": "",
+                "Return": {
+                    "Types": [
+                        "void"
+                    ],
+                    "Comment": ""
+                },
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Button",
+                                "RawValue": "",
+                                "Values": [
+                                    "Auto Play"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "FuncName": "new",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "constructor",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onUpdate",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onStart",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "seekToTime",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onEvent",
+                "Params": [],
+                "Comment": ""
+            }
+        ],
+        "Comment": "",
+        "ExportFiles": []
+    }
+]

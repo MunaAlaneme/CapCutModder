@@ -1,0 +1,43 @@
+{
+	"ImageBusinessSlider" : 
+	{
+		"LV" : 
+		{
+			"alpha" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 94.089996337890625
+			},
+			"alpha1" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 39.0
+			},
+			"alpha2" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 95.0
+			},
+			"contrast" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 100.0
+			},
+			"light" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 100.0
+			},
+			"light1" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 70.0
+			},
+			"light2" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 95.0
+			}
+		}
+	}
+}
