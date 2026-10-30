@@ -1,0 +1,22 @@
+{
+    "setting": {
+        "audio_effect_parameters_change": [
+            {
+                "parameterIndex": 0,
+                "portIndex":0,
+                "sliderName":"change_voice_param_pitch",
+                "minValue":0.0,
+                "defaultValue":0.834,
+                "maxValue":1.0
+            },
+            {
+                "parameterIndex": 1,
+                "portIndex":0,
+                "sliderName":"change_voice_param_timbre",
+                "minValue":0.0,
+                "defaultValue":0.334,
+                "maxValue":1.0
+            }
+        ]
+    }
+}
